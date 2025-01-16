@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>الله يرحمك</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap" rel="stylesheet">
+<link rel="shortcut icon" href="C:\Users\PC\Downloads\favicon_io (1)\favicon.ico" type="image/x-icon">
+  <style>
+   
+   body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #000;
+    color:white;
+    text-align: center;
+   }
+   *{
+    font-family: "Cairo", serif;
+    }
+    h1{
+        color: rgb(175, 35, 35);
+        font-weight: 900;
+        letter-spacing: 2px;
+        font-size: 50px;
+    }
+
+    .container{
+        background-color: rgba(0, 0, 0, 0.404);
+        padding: 20px;
+        text-align: center;
+    }
+    h2{
+        font-size: 30px;
+        font-weight: 700;
+    }
+    input{
+        display: block;
+        width: 100%;
+        text-align: center;
+        padding: 15px;
+        margin-bottom: 5px;
+    }
+    #submitButton{
+        padding: 20px;
+        margin-top: 15px;
+        background-color: rgb(175, 35, 35);
+        border: none;
+        color: white;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    #submitButton:hover{
+        background-color: rgb(83, 18, 18);
+    }
+
+    audio {
+      display: none;
+    }
+
+    #resultContent{
+        padding: 20px;
+
+    }
+
+    .h{
+        color: rgb(175, 35, 35);
+    }
+    .message {
+    font-weight: 900;
+    font-size: 55px;
+    color:rgb(175, 35, 35);
+    opacity: 1;
+    transition: opacity 0.3s ease; /* التأثير لما يحصل تغيير */
+    animation: fadeEffect 3s infinite; /* مدة الأنيميشن = 3 ثواني */
+}
+
+@keyframes fadeEffect {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    70% {
+        opacity: 0;
+    }
+    85% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+
+#sadImage{
+    opacity: 1;
+    transition: opacity 0.3s ease; /* التأثير لما يحصل تغيير */
+    animation: fadeEffect ;
+
+}
+
+
+.lol{
+  width: 100%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+    
+
+  </style>
+</head>
+<body>
+  <div class="container" id="initialContent">
+    <h1>اهلا بكم في موقع الله يرحمك</h1>
+    <h2>اكتب بيانات الشخص اللي عايز تترحم عليه</h2>
+
+      <input type="text" id="userName" placeholder="اسم الشخص">
+      <input type="number" id="birthYear" placeholder="سنة الميلاد">
+      <input type="number" id="deathYear" placeholder="سنة الوفاة">
+      <input type="text" id="tribute" placeholder="اكتب تعزية للميت">
+          <button id="submitButton">انشاء</button>
+
+  </div>
+
+  <div id="resultContent" style="display: none;">
+    <div class="message" id="message"></div>
+    <div class="details" id="details"></div>
+    <img src="1.jpg" alt="صورة حزينة" id="sadImage">
+    <h6><span class="h"> JOE </span>تم الانشاء بواسطة  </h6>
+    <audio id="sadMusic" loop>
+      <source src="ريمكس لاي لاي لاي لا لا لا lay lay lay la la la.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+
+  <script>
+    // جلب العناصر
+    const submitButton = document.getElementById('submitButton');
+    const userNameInput = document.getElementById('userName');
+    const birthYearInput = document.getElementById('birthYear');
+    const deathYearInput = document.getElementById('deathYear');
+    const tributeInput = document.getElementById('tribute');
+    const initialContent = document.getElementById('initialContent');
+    const resultContent = document.getElementById('resultContent');
+    const message = document.getElementById('message');
+    const details = document.getElementById('details');
+    const sadMusic = document.getElementById('sadMusic');
+
+    // إضافة حدث onclick للزر
+    submitButton.onclick = function () {
+      const userName = userNameInput.value.trim();
+      const birthYear = birthYearInput.value.trim();
+      const deathYear = deathYearInput.value.trim();
+      const tribute = tributeInput.value.trim();
+
+      if (userName && birthYear && deathYear && tribute) {
+        // مسح الصفحة الأصلية
+        initialContent.style.display = 'none';
+
+        // عرض الرسالة الجديدة
+        message.textContent = `الله يرحمك يا ${userName}`;
+        details.innerHTML = `
+          <p><span class='h'>ولد في :</span>${birthYear}</p>
+          <p><span class='h'>توفي في :</span>${deathYear}</p>
+          <p>${tribute}</p>
+        `;
+        resultContent.style.display = 'block';
+
+        // تشغيل الموسيقى الحزينة
+        sadMusic.play();
+      } else {
+        alert('من فضلك املأ كل الحقول قبل الإرسال!');
+      }
+    };
+  </script>
+</body>
+</html>
